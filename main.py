@@ -22,7 +22,7 @@ for param in ["figure.facecolor", "axes.facecolor", "savefig.facecolor"]:
     rcParams[param] = "#2F3136"
 
 for param in ["text.color", "axes.labelcolor", "xtick.color", "ytick.color"]:
-    rcParams[param] = "0.9"
+    rcParams[param] = "1"
 
 
 app = FastAPI()
@@ -34,7 +34,7 @@ SECRET = getenv("SECRET").encode()
 IMAGE_FORMAT = "jpeg"
 
 
-def generate_graph(*, title, y_values, fig_size):
+def generate_graph(*, title, colours, y_values, fig_size):
     fig = Figure(figsize=fig_size)
 
     axis = fig.add_subplot(1, 1, 1)
@@ -44,7 +44,7 @@ def generate_graph(*, title, y_values, fig_size):
     if title is None:
         axis.set_title(title)
 
-    axis.grid(color="#35373d")
+    axis.grid(color="#3A3C42")
 
     for i, (label, values) in enumerate(y_values.items()):
         x_values = range(len(values))
@@ -54,7 +54,7 @@ def generate_graph(*, title, y_values, fig_size):
             values,
             label=label,
             marker="o",
-            color=PLOT_COLOURS[i % len(PLOT_COLOURS)],
+            color=colours[i % len(colours)],
         )
 
     fig.legend(frameon=True)
