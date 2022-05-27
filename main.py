@@ -34,15 +34,12 @@ SECRET = getenv("SECRET").encode()
 IMAGE_FORMAT = "jpeg"
 
 
-def generate_graph(*, title, colours, y_values, fig_size):
+def generate_graph(*, colours, y_values, fig_size):
     fig = Figure(figsize=fig_size)
 
     axis = fig.add_subplot(1, 1, 1)
 
     axis.set_xlabel("Tests")
-
-    if title is None:
-        axis.set_title(title)
 
     axis.grid(color="#3A3C42")
 
