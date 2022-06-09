@@ -4,6 +4,7 @@ import json
 import time
 from base64 import b64decode
 from os import getenv
+import asyncio
 
 import uvicorn
 from cryptography.fernet import Fernet, InvalidToken
@@ -83,10 +84,13 @@ def handle_input(raw_data):
 
 
 @app.get("/score_graph")
-def score_graph(raw_data: str):
+async def score_graph(raw_data: str):
+    loop = asyncio.get_running_loop()
+  
+    args = functools.partial(handle_input, raw_data)
 
-    buffer = handle_input(raw_data)
-
+    buffer = await loop.run_in_executor(None, args)
+  
     if buffer is None:
         return
 
