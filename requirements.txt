@@ -1,0 +1,4 @@
+uvicorn
+cryptography
+fastapi
+matplotlib
