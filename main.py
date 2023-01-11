@@ -28,8 +28,6 @@ for param in ["text.color", "axes.labelcolor", "xtick.color", "ytick.color"]:
 
 app = FastAPI()
 
-PLOT_COLOURS = ["#00BBA8", "#FF5F00", "#F5D300"]
-
 SECRET = getenv("SECRET").encode()
 
 IMAGE_FORMAT = "jpeg"
