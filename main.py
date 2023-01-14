@@ -33,7 +33,7 @@ SECRET = getenv("SECRET").encode()
 IMAGE_FORMAT = "jpeg"
 
 
-def generate_graph(*, colours: list[str], y_values: dict[str, list], fig_size: tuple, amount: int):
+def generate_graph(*, colours: list, y_values: dict, fig_size: tuple, amount: int):
     fig = Figure(figsize=fig_size)
 
     axis = fig.add_subplot(1, 1, 1)
@@ -42,9 +42,9 @@ def generate_graph(*, colours: list[str], y_values: dict[str, list], fig_size: t
 
     axis.grid(color="#3A3C42")
 
-    for i, (label, values) in enumerate(y_values.items()):
-        x_values = range(0, amount, amount // len(values) + 1)
+    x_values = range(0, amount, (amount // 100) + 1)
 
+    for i, (label, values) in enumerate(y_values.items()):
         axis.plot(
             x_values,
             values,
